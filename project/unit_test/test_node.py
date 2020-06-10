@@ -26,6 +26,9 @@ class TestNode(unittest.TestCase):
 		node.add_child(child_data)
 		self.assertEqual(node.node, "C")
 		self.assertEqual(node.child_list, [child_data])
+		child_data2 = ["G","8"]
+		node.add_child(child_data2)
+		self.assertEqual(node.child_list, [child_data, child_data2])
 
 	def test_is_equal(self):
 		print("test_is_equal")
