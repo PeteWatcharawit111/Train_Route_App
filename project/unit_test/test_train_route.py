@@ -11,7 +11,7 @@ class TestTrainRoute(unittest.TestCase):
 		print("test_init")
 		train_route = TrainRoute()
 		self.assertEqual(train_route.data_matrix, [])
-		self.assertEqual(train_route.tree, None)
+		self.assertTrue(isinstance(train_route.tree_node, TreeNode))
 
 	def test_read_csv_file(self):
 		print("test_read_csv_file")

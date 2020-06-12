@@ -26,21 +26,21 @@ class TreeNode():
 	def node_already_exist(self, n):
 		exist = False
 		for i in range(len(self.tree)):
-			if n.node == self.tree[i].node:
+			if n.name == self.tree[i].name:
 				exist = True
 		return exist
 
 	def find_existed_node(self, n):
 		index = -1
 		for i in range(len(self.tree)):
-			if n.node == self.tree[i].node:
+			if n.name == self.tree[i].name:
 				index = i
 		return index
 
-	def find_existed_node_name(self, node):
+	def find_existed_node_name(self, name):
 		index = -1
 		for i in range(len(self.tree)):
-			if node == self.tree[i].node:
+			if name == self.tree[i].name:
 				index = i
 		return index
 

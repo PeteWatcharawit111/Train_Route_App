@@ -37,19 +37,16 @@ class TrainRoute:
 		self.queue.append(start_node)
 		self.print_queue()
 
-		# while the queue is not empty do:
-		##################################
-
-		# pop the queue and save as current_node
-		current_node = self.queue.pop(0)
-		current_node.visited = True
-		print(current_node)
-
-		# append the children of current_node in the queue
-		for child in current_node.child_list:
-			print(child)
-			print(child[0])
-		print(self.tree_node)
+		current_node = None
+		tmp_count = 0
+		while tmp_count != 1:
+			tmp_count = tmp_count + 1
+			current_node = self.queue.pop(0)
+			current_node.visited = True
+			print(current_node)
+			for i in range (len(current_node.child_list)):
+				print(i)
+				print(current_node.child_list[i][0])
 
 				
 	def analyze_route(self):
@@ -59,6 +56,7 @@ class TrainRoute:
 		station_to = str(input())
 
 	def print_queue(self):
+		print("queue")
 		for node in self.queue:
 			print(node)
 

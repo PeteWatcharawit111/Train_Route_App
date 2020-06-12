@@ -3,7 +3,7 @@
 class Node:
 	"""Node class is a basic class that represents train stations as different nodes"""
 	def __init__(self, n):
-		self.node = n
+		self.name = n
 		self.child_list = []
 		self.visited = False
 		self.parent_list = [] 
@@ -13,7 +13,7 @@ class Node:
 
 	def is_equal(self, n):
 		bl = False
-		if self.node == n.node:
+		if self.name == n.name:
 			bl = True
 		return bl
 
@@ -21,7 +21,7 @@ class Node:
 		self.parent_list.append(parent_data)
 
 	def __str__(self):
-		ret_string = str(self.node) + ": " + "visited: " + str(self.visited) + " " + str(self.child_list)
+		ret_string = str(self.name) + ": " + "visited: " + str(self.visited) + " Child: " + str(self.child_list)
 		if len(self.parent_list) != 0:
-			ret_string = str(self.node) + ": " + "visited: " + str(self.visited) + " Parent: " + self.parent_list + " " + str(self.child_list)
+			ret_string = str(self.name) + ": " + "visited: " + str(self.visited) + " Parent: " + str(self.parent_list) + " Child: " + str(self.child_list)
 		return ret_string
