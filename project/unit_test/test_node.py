@@ -12,6 +12,8 @@ class TestNode(unittest.TestCase):
 		node = Node("A")
 		self.assertEqual(node.node, "A")
 		self.assertEqual(node.child_list, [])
+		self.assertEqual(node.visited, False)
+		self.assertEqual(node.parent_list, [])
 
 	def test_add_child(self):
 		print("test_add_child")
@@ -29,6 +31,14 @@ class TestNode(unittest.TestCase):
 		child_data2 = ["G","8"]
 		node.add_child(child_data2)
 		self.assertEqual(node.child_list, [child_data, child_data2])
+
+	def test_add_parent(self):
+		print("test_add_parent")
+		node = Node("F")
+		parent_data = ["B", "4"]
+		node.add_parent(parent_data)
+		self.assertEqual(node.node, "F")
+		self.assertEqual(node.parent_list, [parent_data])
 
 	def test_is_equal(self):
 		print("test_is_equal")

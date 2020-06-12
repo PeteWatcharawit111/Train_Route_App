@@ -17,11 +17,11 @@ class TestTreeNode(unittest.TestCase):
 
 	def test_init(self):
 		print("test_init")
-		tree = TreeNode(self.data_matrix)
+		tree = TreeNode()
 
 	def test_append_node(self):
 		print("test_append_node")
-		tree = TreeNode(self.data_matrix)
+		tree = TreeNode()
 		node = Node("A")
 		tree.append_node(node)
 		self.assertTrue(len(tree.tree) == 1)
@@ -31,7 +31,7 @@ class TestTreeNode(unittest.TestCase):
 
 	def test_node_already_exist(self):
 		print("test_node_already_exist")
-		tree = TreeNode(self.data_matrix)
+		tree = TreeNode()
 		node1 = Node("A")
 		bl = tree.node_already_exist(node1)
 		
@@ -59,7 +59,7 @@ class TestTreeNode(unittest.TestCase):
 
 	def test_find_existed_node(self):
 		print("test_find_existed_node")
-		tree = TreeNode(self.data_matrix)
+		tree = TreeNode()
 		node1 = Node("G")
 		index = tree.find_existed_node(node1)
 		self.assertEqual(index, -1)
@@ -73,13 +73,32 @@ class TestTreeNode(unittest.TestCase):
 		index = tree.find_existed_node(node2)
 		self.assertEqual(index, 1)
 
+	def test_find_existed_node_name(self):
+		print("test_find_existed_node_name")
+		tree = TreeNode()
+		tree.create_node_tree(self.data_matrix)
+		index = tree.find_existed_node_name("O")
+		self.assertEqual(index, 10)
+		index2 = tree.find_existed_node_name("B")
+		self.assertEqual(index2, 1)
+		index3 = tree.find_existed_node_name("A")
+		self.assertEqual(index3, 0)
+		index4 = tree.find_existed_node_name("Z")
+		self.assertEqual(index4, -1)
+
 	def test_create_node_tree(self):
 		print("test_create_node_tree")
-		tree = TreeNode(self.data_matrix)
+		tree = TreeNode()
 		tree.create_node_tree(self.data_matrix)
 		
-
-
+	def test_retrieve_node(self):
+		print("test_retrieve_node")
+		tree = TreeNode()
+		tree.create_node_tree(self.data_matrix)
+		node = tree.retrieve_node(5)
+		self.assertNotEqual(node, None)
+		node = tree.retrieve_node(2000)
+		self.assertEqual(node, None)
 
 if __name__ == '__main__':
 	unittest.main()

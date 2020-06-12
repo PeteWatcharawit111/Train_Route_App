@@ -2,7 +2,7 @@ from node import *
 
 class TreeNode():
 
-	def __init__(self, data_matrix):
+	def __init__(self):
 		self.tree = []
 
 	def create_node_tree(self, data_matrix):
@@ -21,7 +21,7 @@ class TreeNode():
 				child_data = [ data_matrix[i][1], data_matrix[i][2] ]
 				self.tree[index].add_child(child_data)
 				
-		print(self)
+		#print(self)
 
 	def node_already_exist(self, n):
 		exist = False
@@ -36,6 +36,19 @@ class TreeNode():
 			if n.node == self.tree[i].node:
 				index = i
 		return index
+
+	def find_existed_node_name(self, node):
+		index = -1
+		for i in range(len(self.tree)):
+			if node == self.tree[i].node:
+				index = i
+		return index
+
+	def retrieve_node(self, index):
+		try:
+			return self.tree[index]
+		except IndexError:
+			return None
 
 	def append_node(self, n):
 		self.tree.append(n)
