@@ -46,7 +46,8 @@ class TrainRoute:
 			print(current_node)
 			for i in range (len(current_node.child_list)):
 				print(i)
-				print(current_node.child_list[i][0])
+				child_name = current_node.child_list[i][0]
+				print(child_name)
 
 				
 	def analyze_route(self):
