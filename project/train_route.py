@@ -9,6 +9,7 @@ class TrainRoute:
 	def __init__(self):
 		self.data_matrix = []
 		self.tree_node = TreeNode()
+		self.distances = set()
 
 	def read_csv_file(self, csv_file):
 		print("read_csv_file")
@@ -17,6 +18,12 @@ class TrainRoute:
 				words = line.rstrip().split(',')
 				self.data_matrix.append(words)
 		#print(self.data_matrix)
+
+	def create_distances(self, node_names):
+		#print(node_names)
+		self.distances = {node_name: float('inf') for node_name in node_names}
+		#print(self.distances)
+
 
 	def dijkstra(self, start_station, end_station):
 		print("dijkstra")

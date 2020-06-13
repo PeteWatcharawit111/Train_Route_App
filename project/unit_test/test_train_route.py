@@ -7,6 +7,17 @@ from train_route import *
 
 class TestTrainRoute(unittest.TestCase):
 
+	def setUp(self):
+		print("setUp")
+		self.data_matrix = []
+		with open('../routes2.csv', 'r') as f:
+			for line in f:
+				words = line.rstrip().split(',')
+				self.data_matrix.append(words)
+		self.tree = TreeNode()
+		self.tree.create_node_tree(self.data_matrix)
+		self.tree.create_node_names(self.data_matrix)
+
 	def test_init(self):
 		print("test_init")
 		train_route = TrainRoute()
@@ -27,6 +38,15 @@ class TestTrainRoute(unittest.TestCase):
 		train_route.queue.append(Node("K"))
 		train_route.print_queue()
 
+	def test_create_distances(self):
+		print("test_create_distances")
+		train_route = TrainRoute()
+		train_route.read_csv_file("../routes2.csv")
+		train_route.create_distances(self.tree.node_names)
+		self.assertTrue(len(train_route.distances) > 0)
+		for name in train_route.distances:
+			self.assertEqual(train_route.distances[name], float('inf'))
+			
 	def test_dijkstra(self):
 		print("test_dijkstra")
 		train_route = TrainRoute()
