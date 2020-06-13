@@ -12,7 +12,6 @@ class TestNode(unittest.TestCase):
 		node = Node("A")
 		self.assertEqual(node.name, "A")
 		self.assertEqual(node.child_list, [])
-		self.assertEqual(node.visited, False)
 
 	def test_add_child(self):
 		print("test_add_child")

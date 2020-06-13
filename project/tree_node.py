@@ -4,11 +4,9 @@ class TreeNode():
 
 	def __init__(self):
 		self.tree = []
-		self.tree_set = set()
 		self.node_names = set()
 
 	def create_node_tree(self, data_matrix):
-		#print("hello")
 		for i in range(len(data_matrix)):
 			node = Node(data_matrix[i][0])
 			child_data = [ data_matrix[i][1], data_matrix[i][2] ]
@@ -23,13 +21,7 @@ class TreeNode():
 				child_data = [ data_matrix[i][1], data_matrix[i][2] ]
 				self.tree[index].add_child(child_data)
 				
-		#print(self)
-
-	def create_node_tree_set(self, data_matrix):
-
-		print(self.tree_set)
-		print(data_matrix)
-		print(data_matrix[0])
+		print(self)
 
 	def create_node_names(self, data_matrix):
 		for data in data_matrix:

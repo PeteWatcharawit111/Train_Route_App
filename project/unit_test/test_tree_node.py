@@ -91,11 +91,6 @@ class TestTreeNode(unittest.TestCase):
 		tree = TreeNode()
 		tree.create_node_tree(self.data_matrix)
 
-	def test_create_node_tree_set(self):
-		print("test_create_node_tree_set")
-		tree = TreeNode()
-		tree.create_node_tree_set(self.data_matrix)
-
 	def test_create_node_names(self):
 		print("test_create_node_names")
 		tree = TreeNode()

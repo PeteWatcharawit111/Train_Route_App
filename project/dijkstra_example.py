@@ -21,7 +21,10 @@ class Graph:
         if wrong_edges:
             raise ValueError('Wrong edges data: {}'.format(wrong_edges))
 
+        for edge in edges:
+            print("edge:", edge)
         self.edges = [make_edge(*edge) for edge in edges]
+        print("self.edges: ", self.edges)
 
     @property
     def vertices(self):
