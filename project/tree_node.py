@@ -21,7 +21,7 @@ class TreeNode():
 				child_data = [ data_matrix[i][1], data_matrix[i][2] ]
 				self.tree[index].add_child(child_data)
 				
-		print(self)
+		#print(self)
 
 	def create_node_names(self, data_matrix):
 		for data in data_matrix:
@@ -50,6 +50,8 @@ class TreeNode():
 		return index
 
 	def retrieve_node(self, index):
+		if index < 0:
+			return None
 		try:
 			return self.tree[index]
 		except IndexError:

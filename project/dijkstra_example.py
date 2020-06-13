@@ -21,10 +21,10 @@ class Graph:
         if wrong_edges:
             raise ValueError('Wrong edges data: {}'.format(wrong_edges))
 
-        for edge in edges:
-            print("edge:", edge)
+        #for edge in edges:
+            #print("edge:", edge)
         self.edges = [make_edge(*edge) for edge in edges]
-        print("self.edges: ", self.edges)
+        #print("self.edges: ", self.edges)
 
     @property
     def vertices(self):
@@ -70,11 +70,11 @@ class Graph:
     def dijkstra(self, source, dest):
         #assert source in self.vertices, 'Such source node doesn\'t exist'
         distances = {vertex: inf for vertex in self.vertices}
-        print("distances: ", distances)
+        #print("distances: ", distances)
         previous_vertices = {
             vertex: None for vertex in self.vertices
         }
-        print("previous_vertices: ", previous_vertices)
+        #print("previous_vertices: ", previous_vertices)
         distances[source] = 0
         vertices = self.vertices.copy()
         print("vertices:", vertices)
@@ -85,24 +85,22 @@ class Graph:
             if distances[current_vertex] == inf:
                 print("here")
                 break
+            print("current_vertex: " + current_vertex)
             for neighbour, cost in self.neighbours[current_vertex]:
-                #print("self.neighbours: ", self.neighbours)
-                #print(self.neighbours[current_vertex])
-                #print(neighbour)
-                #print(cost)
-                print("current_vertex: " + current_vertex)
-                print("distances[current_vertex]:", distances[current_vertex])
+                print("self.neighbours: ", self.neighbours)
+                print(self.neighbours[current_vertex])
+                #print("neighbour: " + neighbour)
+                #print("distances[current_vertex]:", distances[current_vertex])
                 print("cost: ", cost)
+                print("distances[current_vertex]", distances[current_vertex])
                 alternative_route = distances[current_vertex] + cost
-                #print(distances[current_vertex])
-                print("neighbour: " + neighbour)
                 print("alternative_route: ", alternative_route)
-                print("distance[neighbour]: ", distances[neighbour])
+                #print("distance[neighbour]: ", distances[neighbour])
                 if alternative_route < distances[neighbour]:
-                    print("if")
+                    #print("if")
                     distances[neighbour] = alternative_route
                     previous_vertices[neighbour] = current_vertex
-                    print("previous_vertices: ", previous_vertices)
+                    #print("previous_vertices: ", previous_vertices)
             print("*****************************")
 
         path, current_vertex = deque(), dest
@@ -140,4 +138,4 @@ graph2 = Graph([
 #    ("F","G", 5), ("G","H",10), ("H","I",10), ("I","J",5), ("G","J",20)
 #    ])
 
-print(graph2.dijkstra("E", "I"))
+print(graph2.dijkstra("A", "N"))

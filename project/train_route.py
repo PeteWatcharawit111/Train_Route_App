@@ -3,6 +3,7 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from tree_node import * 
+from collections import deque
 
 class TrainRoute:
 
@@ -32,18 +33,50 @@ class TrainRoute:
 
 	def dijkstra(self, start_station, end_station):
 		print("dijkstra")
-		print(self.tree_node)
+		#print("self.tree_node: ", self.tree_node)
+		#print("self.tree_node.node_names: ", self.tree_node.node_names)
+		#print("self.distances: ", self.distances)
+		#print("self.previous_nodes: ", self.previous_nodes)
 
-		# find the start_station in the tree
-		start_index = self.tree_node.find_existed_node_name(start_station)
-		start_node = self.tree_node.retrieve_node(start_index)
-		#print(start_node)
+		self.distances[start_station] = 0
+		node_names = self.tree_node.node_names.copy()
 
-		# find the end_station in the tree
-		end_index = self.tree_node.find_existed_node_name(end_station)
-		end_node = self.tree_node.retrieve_node(end_index)
-		#print(end_node)
-
+		while node_names:
+			current_node_name = min(node_names, key=lambda node: self.distances[node])
+			print("current_node_name: ", current_node_name)
+			node_names.remove(current_node_name)
+			if self.distances[current_node_name] == float('inf'):
+				break
+			index = self.tree_node.find_existed_node_name(current_node_name)
+			print("index: ", index)
+			current_node = self.tree_node.retrieve_node(index)
+			print("current_node: ", current_node)
+			if current_node:
+				for child, cost in current_node.child_list:
+					print("child: ", child)
+					print("cost: ", cost)
+					print("self.distances[current_node_name]:", self.distances[current_node_name])
+					alternative_route = self.distances[current_node_name] + int(cost)
+					print("alternative_route: ", alternative_route)
+					if alternative_route < self.distances[child]:
+						self.distances[child] = alternative_route
+						self.previous_nodes[child] = current_node_name
+			print("***********************")
+		path, current_node_name = deque(), end_station
+		# check if the path to the destiny is reachable. Otherwise the algorithm warns that it fails
+		print("self.previous_nodes[current_node_name]:", self.previous_nodes[current_node_name])
+		try:
+			# filling in the dequeue for the path
+			while self.previous_nodes[current_node_name] is not None:
+				path.appendleft(current_node_name)
+				current_node_name = self.previous_nodes[current_node_name]
+			if path:
+				path.appendleft(current_node_name)
+				return [path, self.distances[end_station], len(path) - 2]
+			else:
+				return "Failed!"
+		except:
+			return "Failed!"
 				
 	def analyze_route(self):
 		print("What station are you getting on the train?:")
@@ -52,11 +85,7 @@ class TrainRoute:
 		station_to = str(input())
 
 if __name__ == '__main__':
-	train_route = TrainRoute()
-	train_route.read_csv_file("routes.csv")
-
-	station_tree = TreeNode(train_route.data_matrix)
-	#print(station_tree)
+	print("hello")
 
 	
 
