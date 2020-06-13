@@ -30,14 +30,6 @@ class TestTrainRoute(unittest.TestCase):
 		train_route.read_csv_file("../routes2.csv")
 		self.assertTrue(len(train_route.data_matrix) != 0)
 
-	def test_print_queue(self):
-		print("test_print_queue")
-		train_route = TrainRoute()
-		train_route.read_csv_file("../routes2.csv")
-		train_route.queue.append(Node("A"))
-		train_route.queue.append(Node("K"))
-		train_route.print_queue()
-
 	def test_create_distances(self):
 		print("test_create_distances")
 		train_route = TrainRoute()
@@ -46,7 +38,16 @@ class TestTrainRoute(unittest.TestCase):
 		self.assertTrue(len(train_route.distances) > 0)
 		for name in train_route.distances:
 			self.assertEqual(train_route.distances[name], float('inf'))
-			
+
+	def test_create_previous_nodes(self):
+		print("test_create_previous_nodes")
+		train_route = TrainRoute()
+		train_route.read_csv_file("../routes2.csv")
+		train_route.create_previous_nodes(self.tree.node_names)
+		self.assertTrue(len(train_route.previous_nodes) > 0)
+		for name in train_route.previous_nodes:
+			self.assertEqual(train_route.previous_nodes[name], None)
+
 	def test_dijkstra(self):
 		print("test_dijkstra")
 		train_route = TrainRoute()

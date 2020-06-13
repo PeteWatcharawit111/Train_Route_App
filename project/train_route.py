@@ -10,6 +10,7 @@ class TrainRoute:
 		self.data_matrix = []
 		self.tree_node = TreeNode()
 		self.distances = set()
+		self.previous_nodes = set()
 
 	def read_csv_file(self, csv_file):
 		print("read_csv_file")
@@ -24,6 +25,10 @@ class TrainRoute:
 		self.distances = {node_name: float('inf') for node_name in node_names}
 		#print(self.distances)
 
+	def create_previous_nodes(self, node_names):
+		#print(node_names)
+		self.previous_nodes = {node_name: None for node_name in node_names}
+		#print(self.previous_nodes)
 
 	def dijkstra(self, start_station, end_station):
 		print("dijkstra")
