@@ -27,12 +27,12 @@ class TestTrainRoute(unittest.TestCase):
 		train_route.queue.append(Node("K"))
 		train_route.print_queue()
 
-	def test_BFS(self):
-		print("test_BFS")
+	def test_dijkstra(self):
+		print("test_dijkstra")
 		train_route = TrainRoute()
 		train_route.read_csv_file("../routes2.csv")
 		train_route.tree_node.create_node_tree(train_route.data_matrix)
-		train_route.BFS("A","N")
+		train_route.dijkstra("A","N")
 
 if __name__ == '__main__':
 	unittest.main()

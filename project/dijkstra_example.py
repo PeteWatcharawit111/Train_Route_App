@@ -67,15 +67,14 @@ class Graph:
     def dijkstra(self, source, dest):
         #assert source in self.vertices, 'Such source node doesn\'t exist'
         distances = {vertex: inf for vertex in self.vertices}
-        #print(distances)
+        print("distances: ", distances)
         previous_vertices = {
             vertex: None for vertex in self.vertices
         }
-        #print(previous_vertices)
+        print("previous_vertices: ", previous_vertices)
         distances[source] = 0
-        #print(distances)
         vertices = self.vertices.copy()
-        #print(vertices)
+        print("vertices:", vertices)
         while vertices:
             current_vertex = min(
                 vertices, key=lambda vertex: distances[vertex])
@@ -84,7 +83,7 @@ class Graph:
                 print("here")
                 break
             for neighbour, cost in self.neighbours[current_vertex]:
-                #print(self.neighbours)
+                #print("self.neighbours: ", self.neighbours)
                 #print(self.neighbours[current_vertex])
                 #print(neighbour)
                 #print(cost)
@@ -105,16 +104,21 @@ class Graph:
 
         path, current_vertex = deque(), dest
         print("current_vertex: ", current_vertex)
-        print("previous_vertices: ", previous_vertices[current_vertex])
-        # filling in the dequeue for the path
-        while previous_vertices[current_vertex] is not None:
-            path.appendleft(current_vertex)
-            print("path: ", path)
-            current_vertex = previous_vertices[current_vertex]
-            print("current_vertex: ", current_vertex)
-        if path:
-            path.appendleft(current_vertex)
-        return path
+        # check if the path to the destiny is reachable. Otherwise the algorithm warns that it fails
+        try:
+            print("previous_vertices: ", previous_vertices[current_vertex])
+            print("distances:", distances[dest])
+            # filling in the dequeue for the path
+            while previous_vertices[current_vertex] is not None:
+                path.appendleft(current_vertex)
+                print("path: ", path)
+                current_vertex = previous_vertices[current_vertex]
+                print("current_vertex: ", current_vertex)
+            if path:
+                path.appendleft(current_vertex)
+            return [path, distances[dest], len(path) - 2]
+        except:
+            return "Failed!"
 
 
 #graph = Graph([
@@ -122,10 +126,15 @@ class Graph:
 #    ("b", "d", 15), ("c", "d", 11), ("c", "f", 2),  ("d", "e", 6),
 #    ("f", "e", 9)])
 
-graph2 = Graph([
-    ("A","B",5), ("A","C",7), ("B","D",8), ("D","J",6), ("D","K",6), 
-    ("B","E",5), ("B","F",4), ("E","L",8), ("C","I",12), ("C","H",5),
-    ("H","M",6), ("I","N",11), ("L","O", 15), ("M","N",6), ("N","O",4),
-    ("O","P",5)])
+#graph2 = Graph([
+#    ("A","B",5), ("A","C",7), ("B","D",8), ("D","J",6), ("D","K",6), 
+#    ("B","E",5), ("B","F",4), ("E","L",8), ("C","I",12), ("C","H",5),
+#    ("H","M",6), ("I","N",11), ("L","O", 15), ("M","N",6), ("N","O",4),
+#    ("O","P",5)])
 
-print(graph2.dijkstra("A", "Z"))
+graph3 = Graph([
+    ("A","B", 5), ("B","C",5), ("C","D",7), ("A","D",15), ("E","F",5),
+    ("F","G", 5), ("G","H",10), ("H","I",10), ("I","J",5), ("G","J",20)
+    ])
+
+print(graph3.dijkstra("E", "I"))

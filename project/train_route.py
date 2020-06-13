@@ -19,8 +19,8 @@ class TrainRoute:
 				self.data_matrix.append(words)
 		#print(self.data_matrix)
 
-	def BFS(self, start_station, end_station):
-		print("BFS")
+	def dijkstra(self, start_station, end_station):
+		print("dijkstra")
 		print(self.tree_node)
 
 		# find the start_station in the tree
