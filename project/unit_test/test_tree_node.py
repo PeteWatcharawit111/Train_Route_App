@@ -105,6 +105,8 @@ class TestTreeNode(unittest.TestCase):
 		self.assertNotEqual(node, None)
 		node = tree.retrieve_node(2000)
 		self.assertEqual(node, None)
+		node = tree.retrieve_node(-1)
+		self.assertEqual(node, None)
 
 if __name__ == '__main__':
 	unittest.main()
