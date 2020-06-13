@@ -8,7 +8,6 @@ class TrainRoute:
 
 	def __init__(self):
 		self.data_matrix = []
-		self.queue = []
 		self.tree_node = TreeNode()
 
 	def read_csv_file(self, csv_file):
@@ -33,33 +32,12 @@ class TrainRoute:
 		end_node = self.tree_node.retrieve_node(end_index)
 		#print(end_node)
 
-		# setup the startnode in the queue
-		self.queue.append(start_node)
-		self.print_queue()
-
-		current_node = None
-		tmp_count = 0
-		while tmp_count != 1:
-			tmp_count = tmp_count + 1
-			current_node = self.queue.pop(0)
-			current_node.visited = True
-			print(current_node)
-			for i in range (len(current_node.child_list)):
-				print(i)
-				child_name = current_node.child_list[i][0]
-				print(child_name)
-
 				
 	def analyze_route(self):
 		print("What station are you getting on the train?:")
 		station_from = str(input())
 		print("What station are you getting off the train?:")
 		station_to = str(input())
-
-	def print_queue(self):
-		print("queue")
-		for node in self.queue:
-			print(node)
 
 if __name__ == '__main__':
 	train_route = TrainRoute()
