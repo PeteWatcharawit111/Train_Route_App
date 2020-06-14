@@ -51,13 +51,13 @@ class TestTrainRoute(unittest.TestCase):
 	def test_dijkstra(self):
 		print("test_dijkstra")
 		train_route = TrainRoute()
-		train_route.read_csv_file("../routes3.csv")
+		train_route.read_csv_file("../routes.csv")
 		train_route.tree_node.create_node_tree(train_route.data_matrix)
 		train_route.tree_node.create_node_names(train_route.data_matrix)
 		train_route.create_distances(train_route.tree_node.node_names)
 		train_route.create_previous_nodes(train_route.tree_node.node_names)
-		result = train_route.dijkstra("a","b")
-		print(result)
+		result = train_route.dijkstra("A","B")
+		print("result: ", result)
 
 if __name__ == '__main__':
 	unittest.main()

@@ -18,8 +18,18 @@ class TrainRoute:
 		with open(csv_file, 'r') as f:
 			for line in f:
 				words = line.rstrip().split(',')
-				self.data_matrix.append(words)
+				if len(words) == 3 and self.is_int(words[2]):
+					self.data_matrix.append(words)
+				else:
+					raise ValueError("file format is not correct, each row should be for example: A,B,5")
 		#print(self.data_matrix)
+
+	def is_int(self, nr):
+		try:
+			int(nr)
+			return True
+		except:
+			return False
 
 	def create_distances(self, node_names):
 		#print(node_names)
@@ -64,7 +74,7 @@ class TrainRoute:
 			print("***********************")
 		path, current_node_name = deque(), end_station
 		# check if the path to the destiny is reachable. Otherwise the algorithm warns that it fails
-		print("self.previous_nodes[current_node_name]:", self.previous_nodes[current_node_name])
+		#print("self.previous_nodes[current_node_name]:", self.previous_nodes[current_node_name])
 		try:
 			# filling in the dequeue for the path
 			while self.previous_nodes[current_node_name] is not None:
@@ -74,18 +84,17 @@ class TrainRoute:
 				path.appendleft(current_node_name)
 				return [path, self.distances[end_station], len(path) - 2]
 			else:
-				return "Failed!"
+				return "Failed1!"
 		except:
-			return "Failed!"
+			return "Failed2!"
 				
 	def analyze_route(self):
 		print("What station are you getting on the train?:")
 		station_from = str(input())
 		print("What station are you getting off the train?:")
 		station_to = str(input())
-
-if __name__ == '__main__':
-	print("hello")
+		result = self.dijkstra(station_from, station_to)
+		print(result)
 
 	
 
