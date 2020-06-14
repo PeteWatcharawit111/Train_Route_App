@@ -37,8 +37,8 @@ class TestNode(unittest.TestCase):
 		node3 = Node("B")
 		bl = node.is_equal(node2)
 		self.assertFalse(bl)
-		bl = node2.is_equal(node3)
-		self.assertTrue(bl)
+		bl2 = node2.is_equal(node3)
+		self.assertTrue(bl2)
 
 if __name__ == '__main__':
 	unittest.main()

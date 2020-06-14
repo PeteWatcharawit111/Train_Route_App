@@ -6,7 +6,7 @@ from tree_node import *
 from collections import deque
 
 class TrainRoute:
-
+	"""TrainRoute class contains the read file method and methods for the chosen algorithm to analyze the path and distance."""
 	def __init__(self):
 		self.data_matrix = []
 		self.tree_node = TreeNode()
@@ -31,14 +31,10 @@ class TrainRoute:
 			return False
 
 	def create_distances(self, node_names):
-		#print(node_names)
 		self.distances = {node_name: float('inf') for node_name in node_names}
-		#print(self.distances)
 
 	def create_previous_nodes(self, node_names):
-		#print(node_names)
 		self.previous_nodes = {node_name: None for node_name in node_names}
-		#print(self.previous_nodes)
 
 	def check_station_exist(self, station):
 		existed = False
@@ -74,7 +70,7 @@ class TrainRoute:
 		if path:
 			path.appendleft(current_node_name)
 			result = [path, self.distances[end_station], len(path) - 2]
-			print(result)
+			#print(result)
 			return "Your trip from " + start_station + " to " + end_station + " includes " + str(result[2]) + " stops and will take " + str(result[1]) + " minutes"
 		else:
 			return "No routes from " + start_station + " to " + end_station
@@ -90,8 +86,8 @@ class TrainRoute:
 		if not self.check_station_exist(station_to):
 			sys.exit("end station not found")
 		
-		result = self.dijkstra(station_from, station_to)
-		print(result)
+		result_msg = self.dijkstra(station_from, station_to)
+		print(result_msg)
 		
 
 	

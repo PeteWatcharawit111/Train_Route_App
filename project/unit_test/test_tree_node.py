@@ -10,7 +10,7 @@ class TestTreeNode(unittest.TestCase):
 	def setUp(self):
 		print("setUp")
 		self.data_matrix = []
-		with open('../routes2.csv', 'r') as f:
+		with open('../input_files/routes2.csv', 'r') as f:
 			for line in f:
 				words = line.rstrip().split(',')
 				self.data_matrix.append(words)
@@ -18,6 +18,8 @@ class TestTreeNode(unittest.TestCase):
 	def test_init(self):
 		print("test_init")
 		tree = TreeNode()
+		self.assertEqual(tree.tree, [])
+		self.assertEqual(tree.node_names, set())
 
 	def test_append_node(self):
 		print("test_append_node")
@@ -34,20 +36,15 @@ class TestTreeNode(unittest.TestCase):
 		tree = TreeNode()
 		node1 = Node("A")
 		bl = tree.node_already_exist(node1)
-		
 		self.assertFalse(bl)
-		
 		tree.append_node(node1)
 		bl2 = tree.node_already_exist(node1)
-		
 		self.assertTrue(bl2)
-		
 		node2 = Node("B")
 		tree.append_node(node2)
 		bl3 = tree.node_already_exist(node1)
 		bl4 = tree.node_already_exist(node2)
 		bl5 = tree.node_already_exist(Node("C"))
-
 		self.assertTrue(bl3)
 		self.assertTrue(bl4)
 		self.assertFalse(bl5)
@@ -89,13 +86,16 @@ class TestTreeNode(unittest.TestCase):
 	def test_create_node_tree(self):
 		print("test_create_node_tree")
 		tree = TreeNode()
+		self.assertTrue(len(tree.tree) == 0)
 		tree.create_node_tree(self.data_matrix)
+		self.assertTrue(len(tree.tree) != 0)
 
 	def test_create_node_names(self):
 		print("test_create_node_names")
 		tree = TreeNode()
+		self.assertTrue(len(tree.node_names) == 0)
 		tree.create_node_names(self.data_matrix)
-		print(tree.node_names)
+		self.assertTrue(len(tree.node_names) != 0)
 		
 	def test_retrieve_node(self):
 		print("test_retrieve_node")

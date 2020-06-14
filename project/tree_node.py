@@ -1,7 +1,7 @@
 from node import *
 
 class TreeNode():
-
+	"""TreeNode class is a class that the node graph is constructed for any chosen algorithm"""
 	def __init__(self):
 		self.tree = []
 		self.node_names = set()
@@ -14,10 +14,7 @@ class TreeNode():
 			if not self.node_already_exist(node):
 				self.append_node(node)
 			else:
-				#print("already in the tree work on adding it's child")
-				#print(node)
 				index = self.find_existed_node(node)
-				#print(index)
 				child_data = [ data_matrix[i][1], data_matrix[i][2] ]
 				self.tree[index].add_child(child_data)
 				
