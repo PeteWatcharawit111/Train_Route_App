@@ -57,6 +57,22 @@ class TestTrainRoute(unittest.TestCase):
 		for name in train_route.previous_nodes:
 			self.assertEqual(train_route.previous_nodes[name], None)
 
+	def test_check_station_exist(self):
+		print("test_check_station_exist")
+		train_route = TrainRoute()
+		train_route.read_csv_file("../routes2.csv")
+		train_route.tree_node.create_node_names(train_route.data_matrix)
+		bl1 = train_route.check_station_exist("A")
+		self.assertTrue(bl1)
+		bl2 = train_route.check_station_exist("a")
+		self.assertFalse(bl2)
+		bl3 = train_route.check_station_exist("C")
+		self.assertTrue(bl3)
+		bl4 = train_route.check_station_exist("c")
+		self.assertFalse(bl4)
+		bl5 = train_route.check_station_exist("1")
+		self.assertFalse(bl5)
+
 	def test_dijkstra(self):
 		print("test_dijkstra")
 		train_route = TrainRoute()
