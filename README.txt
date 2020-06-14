@@ -19,4 +19,8 @@ TODO for the improvement of the project
 
 4) If the program has to call the algorithm a few times, some variables must be cleansed after each run to avoid bugs preferably with a method purge().
 
-5) create a Dockerfile for this application! 
+5) create a Dockerfile for this application!
+
+References:
+
+https://dev.to/mxl/dijkstras-algorithm-in-python-algorithms-for-beginners-dkc
