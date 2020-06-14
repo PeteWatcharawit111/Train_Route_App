@@ -14,7 +14,6 @@ class TrainRoute:
 		self.previous_nodes = set()
 
 	def read_csv_file(self, csv_file):
-		print("read_csv_file")
 		with open(csv_file, 'r') as f:
 			for line in f:
 				words = line.rstrip().split(',')
