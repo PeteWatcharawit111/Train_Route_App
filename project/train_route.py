@@ -41,7 +41,7 @@ class TrainRoute:
 		#print(self.previous_nodes)
 
 	def dijkstra(self, start_station, end_station):
-		print("dijkstra")
+		#print("dijkstra")
 		#print("self.tree_node: ", self.tree_node)
 		#print("self.tree_node.node_names: ", self.tree_node.node_names)
 		#print("self.distances: ", self.distances)
@@ -52,41 +52,38 @@ class TrainRoute:
 
 		while node_names:
 			current_node_name = min(node_names, key=lambda node: self.distances[node])
-			print("current_node_name: ", current_node_name)
+			#print("current_node_name: ", current_node_name)
 			node_names.remove(current_node_name)
 			if self.distances[current_node_name] == float('inf'):
 				break
 			index = self.tree_node.find_existed_node_name(current_node_name)
-			print("index: ", index)
+			#print("index: ", index)
 			current_node = self.tree_node.retrieve_node(index)
-			print("current_node: ", current_node)
+			#print("current_node: ", current_node)
 			if current_node:
 				for child, cost in current_node.child_list:
-					print("child: ", child)
-					print("cost: ", cost)
-					print("self.distances[current_node_name]:", self.distances[current_node_name])
+					#print("child: ", child)
+					#print("cost: ", cost)
+					#print("self.distances[current_node_name]:", self.distances[current_node_name])
 					alternative_route = self.distances[current_node_name] + int(cost)
-					print("alternative_route: ", alternative_route)
+					#print("alternative_route: ", alternative_route)
 					if alternative_route < self.distances[child]:
 						self.distances[child] = alternative_route
 						self.previous_nodes[child] = current_node_name
-			print("***********************")
+			#print("***********************")
 		path, current_node_name = deque(), end_station
 		# check if the path to the destiny is reachable. Otherwise the algorithm warns that it fails
 		#print("self.previous_nodes[current_node_name]:", self.previous_nodes[current_node_name])
-		try:
-			# filling in the dequeue for the path
-			while self.previous_nodes[current_node_name] is not None:
-				path.appendleft(current_node_name)
-				current_node_name = self.previous_nodes[current_node_name]
-			if path:
-				path.appendleft(current_node_name)
-				return [path, self.distances[end_station], len(path) - 2]
-			else:
-				return "Failed1!"
-		except:
-			return "Failed2!"
-				
+		# filling in the dequeue for the path
+		while self.previous_nodes[current_node_name] is not None:
+			path.appendleft(current_node_name)
+			current_node_name = self.previous_nodes[current_node_name]
+		if path:
+			path.appendleft(current_node_name)
+			return [path, self.distances[end_station], len(path) - 2]
+		else:
+			return "No routes from " + start_station + " to " + end_station
+
 	def analyze_route(self):
 		print("What station are you getting on the train?:")
 		station_from = str(input())
@@ -94,6 +91,7 @@ class TrainRoute:
 		station_to = str(input())
 		result = self.dijkstra(station_from, station_to)
 		print(result)
+		print("Your trip from " + station_from + " to " + station_to + " includes " + str(result[2]) + " stops and will take " + str(result[1]) + " minutes")
 
 	
 
