@@ -10,16 +10,13 @@ To run the unit tests do:
 
 TODO for the improvement of the project
 
-1) redesign and rewrite tree_node.py find_existed_node() and find_existed_node_name() to return something else than -1 when the node is not found.
-   This will help us avoid the risk of bug since python can retrieve index -1 from a list also.
+1) Tweak the algorithm so that it returns the path with the least number of stops when there are two equal distance paths between start_station to end_station.
 
-2) Tweak the algorithm so that it returns the path with the least number of stops when there are two equal distance paths between start_station to end_station.
+2) In case we want to implement two-way train stations, we would need to provide the reversed path of A,B,5 which is B,A,5 as well.
 
-3) In case we want to implement two-way train stations, we would need to provide the reversed path of A,B,5 which is B,A,5 as well.
+3) If the program has to call the algorithm a few times, some variables must be cleansed after each run to avoid bugs preferably with a method purge().
 
-4) If the program has to call the algorithm a few times, some variables must be cleansed after each run to avoid bugs preferably with a method purge().
-
-5) create a Dockerfile for this application!
+4) create a Dockerfile for this application!
 
 References:
 
