@@ -59,7 +59,7 @@ class TestTreeNode(unittest.TestCase):
 		tree = TreeNode()
 		node1 = Node("G")
 		index = tree.find_existed_node(node1)
-		self.assertEqual(index, -1)
+		self.assertEqual(index, None)
 
 		tree.append_node(node1)
 		index = tree.find_existed_node(node1)
@@ -81,7 +81,7 @@ class TestTreeNode(unittest.TestCase):
 		index3 = tree.find_existed_node_name("A")
 		self.assertEqual(index3, 0)
 		index4 = tree.find_existed_node_name("Z")
-		self.assertEqual(index4, -1)
+		self.assertEqual(index4, None)
 
 	def test_create_node_tree(self):
 		print("test_create_node_tree")
@@ -106,6 +106,8 @@ class TestTreeNode(unittest.TestCase):
 		node = tree.retrieve_node(2000)
 		self.assertEqual(node, None)
 		node = tree.retrieve_node(-1)
+		self.assertNotEqual(node, None)
+		node = tree.retrieve_node(None)
 		self.assertEqual(node, None)
 
 if __name__ == '__main__':

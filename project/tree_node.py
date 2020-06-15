@@ -33,21 +33,21 @@ class TreeNode():
 		return exist
 
 	def find_existed_node(self, n):
-		index = -1
+		index = None
 		for i in range(len(self.tree)):
 			if n.name == self.tree[i].name:
 				index = i
 		return index
 
 	def find_existed_node_name(self, name):
-		index = -1
+		index = None
 		for i in range(len(self.tree)):
 			if name == self.tree[i].name:
 				index = i
 		return index
 
 	def retrieve_node(self, index):
-		if index < 0:
+		if index == None:
 			return None
 		try:
 			return self.tree[index]
