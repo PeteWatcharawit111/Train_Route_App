@@ -73,8 +73,56 @@ class TestTrainRoute(unittest.TestCase):
 		bl5 = train_route.check_station_exist("1")
 		self.assertFalse(bl5)
 
-	def test_dijkstra(self):
-		print("test_dijkstra")
+	def test_dijkstra1(self):
+		print("test_dijkstra1")
+		train_route = TrainRoute()
+		train_route.read_csv_file("../input_files/routes.csv")
+		train_route.tree_node.create_node_tree(train_route.data_matrix)
+		train_route.tree_node.create_node_names(train_route.data_matrix)
+		train_route.create_distances(train_route.tree_node.node_names)
+		train_route.create_previous_nodes(train_route.tree_node.node_names)
+		result_msg = train_route.dijkstra("A","D")
+		msg = "Your trip from A to D includes 0 stops and will take 15 minutes"
+		self.assertTrue(result_msg, msg)
+
+	def test_dijkstra2(self):
+		print("test_dijkstra2")
+		train_route = TrainRoute()
+		train_route.read_csv_file("../input_files/routes.csv")
+		train_route.tree_node.create_node_tree(train_route.data_matrix)
+		train_route.tree_node.create_node_names(train_route.data_matrix)
+		train_route.create_distances(train_route.tree_node.node_names)
+		train_route.create_previous_nodes(train_route.tree_node.node_names)
+		result_msg = train_route.dijkstra("A","C")
+		msg = "Your trip from A to C includes 1 stops and will take 10 minutes"
+		self.assertTrue(result_msg, msg)
+
+	def test_dijkstra3(self):
+		print("test_dijkstra3")
+		train_route = TrainRoute()
+		train_route.read_csv_file("../input_files/routes.csv")
+		train_route.tree_node.create_node_tree(train_route.data_matrix)
+		train_route.tree_node.create_node_names(train_route.data_matrix)
+		train_route.create_distances(train_route.tree_node.node_names)
+		train_route.create_previous_nodes(train_route.tree_node.node_names)
+		result_msg = train_route.dijkstra("A","E")
+		msg = "No routes from A to E"
+		self.assertTrue(result_msg, msg)
+
+	def test_dijkstra4(self):
+		print("test_dijkstra4")
+		train_route = TrainRoute()
+		train_route.read_csv_file("../input_files/routes.csv")
+		train_route.tree_node.create_node_tree(train_route.data_matrix)
+		train_route.tree_node.create_node_names(train_route.data_matrix)
+		train_route.create_distances(train_route.tree_node.node_names)
+		train_route.create_previous_nodes(train_route.tree_node.node_names)
+		result_msg = train_route.dijkstra("E","J")
+		msg = "Your trip from E to J includes 2 stops and will take 30 minutes"
+		self.assertTrue(result_msg, msg)
+
+	def test_dijkstra5(self):
+		print("test_dijkstra5")
 		train_route = TrainRoute()
 		train_route.read_csv_file("../input_files/routes2.csv")
 		train_route.tree_node.create_node_tree(train_route.data_matrix)
@@ -85,8 +133,8 @@ class TestTrainRoute(unittest.TestCase):
 		msg = "Your trip from A to B includes 0 stops and will take 5 minutes"
 		self.assertTrue(result_msg, msg)
 
-	def test_dijkstra2(self):
-		print("test_dijkstra2")
+	def test_dijkstra6(self):
+		print("test_dijkstra6")
 		train_route = TrainRoute()
 		train_route.read_csv_file("../input_files/routes2.csv")
 		train_route.tree_node.create_node_tree(train_route.data_matrix)
@@ -97,8 +145,8 @@ class TestTrainRoute(unittest.TestCase):
 		msg = "Your trip from A to N includes 3 stops and will take 24 minutes"
 		self.assertTrue(result_msg, msg)
 
-	def test_dijkstra3(self):
-		print("test_dijkstra3")
+	def test_dijkstra7(self):
+		print("test_dijkstra7")
 		train_route = TrainRoute()
 		train_route.read_csv_file("../input_files/routes2.csv")
 		train_route.tree_node.create_node_tree(train_route.data_matrix)
@@ -109,8 +157,20 @@ class TestTrainRoute(unittest.TestCase):
 		msg = "No routes from B to N"
 		self.assertTrue(result_msg, msg)
 
-	def test_dijkstra4(self):
-		print("test_dijkstra4")
+	def test_dijkstra8(self):
+		print("test_dijkstra8")
+		train_route = TrainRoute()
+		train_route.read_csv_file("../input_files/routes2.csv")
+		train_route.tree_node.create_node_tree(train_route.data_matrix)
+		train_route.tree_node.create_node_names(train_route.data_matrix)
+		train_route.create_distances(train_route.tree_node.node_names)
+		train_route.create_previous_nodes(train_route.tree_node.node_names)
+		result_msg = train_route.dijkstra("B","P")
+		msg = "Your trip from B to P includes 3 stops and will take 33 minutes"
+		self.assertTrue(result_msg, msg)
+
+	def test_dijkstra9(self):
+		print("test_dijkstra9")
 		train_route = TrainRoute()
 		train_route.read_csv_file("../input_files/routes3.csv")
 		train_route.tree_node.create_node_tree(train_route.data_matrix)
@@ -119,6 +179,42 @@ class TestTrainRoute(unittest.TestCase):
 		train_route.create_previous_nodes(train_route.tree_node.node_names)
 		result_msg = train_route.dijkstra("a","e")
 		msg = "Your trip from a to e includes 2 stops and will take 20 minutes"
+		self.assertTrue(result_msg, msg)
+
+	def test_dijkstra10(self):
+		print("test_dijkstra10")
+		train_route = TrainRoute()
+		train_route.read_csv_file("../input_files/routes3.csv")
+		train_route.tree_node.create_node_tree(train_route.data_matrix)
+		train_route.tree_node.create_node_names(train_route.data_matrix)
+		train_route.create_distances(train_route.tree_node.node_names)
+		train_route.create_previous_nodes(train_route.tree_node.node_names)
+		result_msg = train_route.dijkstra("b","f")
+		msg = "Your trip from b to f includes 1 stops and will take 12 minutes"
+		self.assertTrue(result_msg, msg)
+
+	def test_dijkstra11(self):
+		print("test_dijkstra11")
+		train_route = TrainRoute()
+		train_route.read_csv_file("../input_files/routes3.csv")
+		train_route.tree_node.create_node_tree(train_route.data_matrix)
+		train_route.tree_node.create_node_names(train_route.data_matrix)
+		train_route.create_distances(train_route.tree_node.node_names)
+		train_route.create_previous_nodes(train_route.tree_node.node_names)
+		result_msg = train_route.dijkstra("a","d")
+		msg = "Your trip from a to d includes 1 stops and will take 20 minutes"
+		self.assertTrue(result_msg, msg)
+
+	def test_dijkstra12(self):
+		print("test_dijkstra12")
+		train_route = TrainRoute()
+		train_route.read_csv_file("../input_files/routes3.csv")
+		train_route.tree_node.create_node_tree(train_route.data_matrix)
+		train_route.tree_node.create_node_names(train_route.data_matrix)
+		train_route.create_distances(train_route.tree_node.node_names)
+		train_route.create_previous_nodes(train_route.tree_node.node_names)
+		result_msg = train_route.dijkstra("d","f")
+		msg = "No routes from d to f"
 		self.assertTrue(result_msg, msg)
 
 if __name__ == '__main__':
