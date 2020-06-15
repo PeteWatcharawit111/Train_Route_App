@@ -88,7 +88,10 @@ class TrainRoute:
 		station_to = str(input())
 		if not self.check_station_exist(station_to):
 			sys.exit("end station not found")
-		
+
+		if station_from == station_to:
+			sys.exit("the start and end station are the same!")
+				
 		result_msg = self.dijkstra(station_from, station_to)
 		print(result_msg)
 		
