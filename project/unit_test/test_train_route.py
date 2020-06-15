@@ -30,14 +30,14 @@ class TestTrainRoute(unittest.TestCase):
 		train_route.read_csv_file("../input_files/routes2.csv")
 		self.assertTrue(len(train_route.data_matrix) != 0)
 
-	def test_is_int(self):
-		print("test_is_int")
+	def test_is_positive_int(self):
+		print("test_is_positive_int")
 		train_route = TrainRoute()
-		self.assertFalse(train_route.is_int("a"))
-		self.assertFalse(train_route.is_int("a0"))
-		self.assertTrue(train_route.is_int("0"))
-		self.assertTrue(train_route.is_int("23"))
-
+		self.assertFalse(train_route.is_positive_int("a"))
+		self.assertFalse(train_route.is_positive_int("a0"))
+		self.assertTrue(train_route.is_positive_int("0"))
+		self.assertTrue(train_route.is_positive_int("23"))
+		self.assertFalse(train_route.is_positive_int("-2"))
 
 	def test_create_distances(self):
 		print("test_create_distances")

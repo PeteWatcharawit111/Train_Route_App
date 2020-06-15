@@ -17,16 +17,19 @@ class TrainRoute:
 		with open(csv_file, 'r') as f:
 			for line in f:
 				words = line.rstrip().split(',')
-				if len(words) == 3 and self.is_int(words[2]):
+				if len(words) == 3 and self.is_positive_int(words[2]):
 					self.data_matrix.append(words)
 				else:
 					raise ValueError("file format is not correct, each row should be for example: A,B,5")
 		#print(self.data_matrix)
 
-	def is_int(self, nr):
+	def is_positive_int(self, nr):
 		try:
-			int(nr)
-			return True
+			number = int(nr)
+			if(number >= 0):
+				return True
+			else:
+				return False
 		except:
 			return False
 
