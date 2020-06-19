@@ -81,10 +81,9 @@ class TrainRoute:
 			path.appendleft(current_node_name)
 			result = [path, self.distances[end_station], len(path) - 2]
 			#print(result)
-			return "Your trip from " + start_station + " to " + end_station + " includes " + str(result[2]) + " stops and will take " + str(result[1]) + " minutes"
-			
+			return "Your trip from %s to %s includes %d stops and will take %d minutes" % (start_station, end_station, result[2] ,result[1])			
 		else:
-			return "No routes from " + start_station + " to " + end_station
+			return "No routes from %s to %s" %(start_station, end_station)
 
 	def analyze_route(self):
 		print("What station are you getting on the train?:")
