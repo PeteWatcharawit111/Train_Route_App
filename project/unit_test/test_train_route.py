@@ -30,6 +30,22 @@ class TestTrainRoute(unittest.TestCase):
 		train_route.read_csv_file("../input_files/routes2.csv")
 		self.assertTrue(len(train_route.data_matrix) != 0)
 
+	def test_two_way_route(self):
+		print("test_two_way_route")
+		train_route = TrainRoute()
+		train_route.read_csv_file("../input_files/routes.csv")
+		rows = len(train_route.data_matrix)
+		self.assertTrue(rows != 0)
+		train_route.two_way_route();
+		self.assertEqual(len(train_route.data_matrix), 2*rows)
+		opposite_route_start_element = int(len(train_route.data_matrix)/2)
+		self.assertEqual(train_route.data_matrix[0][0], train_route.data_matrix[opposite_route_start_element + 0][1])
+		self.assertEqual(train_route.data_matrix[0][1], train_route.data_matrix[opposite_route_start_element + 0][0])
+		self.assertEqual(train_route.data_matrix[1][0], train_route.data_matrix[opposite_route_start_element + 1][1])
+		self.assertEqual(train_route.data_matrix[1][1], train_route.data_matrix[opposite_route_start_element + 1][0])
+		self.assertEqual(train_route.data_matrix[2][0], train_route.data_matrix[opposite_route_start_element + 2][1])
+		self.assertEqual(train_route.data_matrix[2][1], train_route.data_matrix[opposite_route_start_element + 2][0])
+
 	def test_is_positive_int(self):
 		print("test_is_positive_int")
 		train_route = TrainRoute()
@@ -228,6 +244,8 @@ class TestTrainRoute(unittest.TestCase):
 		result_msg = train_route.dijkstra("b","e")
 		msg = "Your trip from b to e includes 2 stops and will take 21 minutes"
 		self.assertEqual(result_msg, msg)
+
+
 
 if __name__ == '__main__':
 	unittest.main()

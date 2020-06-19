@@ -11,6 +11,8 @@ if __name__ == '__main__':
 	if sys.argv[1].startswith("--file=") and sys.argv[1].endswith(".csv"):
 		file_name = sys.argv[1][7:]
 		train_route.read_csv_file(file_name)
+		# two way train routes
+		train_route.two_way_route()
 	else:
 		sys.exit("Wrong input format, expected: python --file=path/input.csv, example: python --file=./input_files/routes2.csv")
 	train_route.tree_node.create_node_tree(train_route.data_matrix)

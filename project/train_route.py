@@ -1,5 +1,6 @@
 import os
 import sys
+import copy
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from tree_node import * 
@@ -22,6 +23,12 @@ class TrainRoute:
 				else:
 					raise ValueError("file format is not correct, each row should be for example: A,B,5")
 		#print(self.data_matrix)
+
+	def two_way_route(self):
+		two_way_matrix = copy.deepcopy(self.data_matrix)
+		for i in range(len(two_way_matrix)):
+			two_way_matrix[i][0], two_way_matrix[i][1] = two_way_matrix[i][1], two_way_matrix[i][0]
+			self.data_matrix.append(two_way_matrix[i])
 
 	def is_positive_int(self, nr):
 		try:
@@ -75,6 +82,7 @@ class TrainRoute:
 			result = [path, self.distances[end_station], len(path) - 2]
 			#print(result)
 			return "Your trip from " + start_station + " to " + end_station + " includes " + str(result[2]) + " stops and will take " + str(result[1]) + " minutes"
+			
 		else:
 			return "No routes from " + start_station + " to " + end_station
 
