@@ -12,11 +12,9 @@ TODO for the improvement of the project
 
 1) Tweak the algorithm so that it returns the path with the least number of stops when there are two equal distance paths between start_station to end_station.
 
-2) In case we want to implement two-way train stations, we would need to provide the reversed path of A,B,5 which is B,A,5 as well.
+2) If the program has to call the algorithm a few times, some variables must be cleansed after each run to avoid bugs preferably with a method purge().
 
-3) If the program has to call the algorithm a few times, some variables must be cleansed after each run to avoid bugs preferably with a method purge().
-
-4) create a Dockerfile for this application!
+3) create a Dockerfile for this application!
 
 References:
 
